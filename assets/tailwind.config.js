@@ -4,6 +4,7 @@
 const plugin = require("tailwindcss/plugin")
 const fs = require("fs")
 const path = require("path")
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
@@ -14,8 +15,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
-        brand: "#FD4F00",
+        brand: "#165c96",
       }
     },
   },

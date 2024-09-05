@@ -1,13 +1,31 @@
 defmodule Blocks.Components.Button do
-  @moduledoc false
+  @moduledoc """
+  Renders a button.
+
+  ## Examples
+
+    <.button>Send!</.button>
+    <.button phx-click="go" class="ml-2">Send!</.button>
+  """
 
   use Phoenix.Component
+
+  attr :type, :string, default: nil
+  attr :class, :string, default: nil
+  attr :rest, :global, include: ~w(disabled form name value)
 
   slot :inner_block, required: true
 
   def button(assigns) do
     ~H"""
-    <button class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+    <button
+      type={@type}
+      class={[
+        "text-base font-normal rounded cursor-pointer inline-block px-4 py-2 text-center select-none align-middle whitespace-nowrap border border-transparent bg-brand text-white",
+        @class
+      ]}
+      {@rest}
+    >
       <%= render_slot(@inner_block) %>
     </button>
     """
